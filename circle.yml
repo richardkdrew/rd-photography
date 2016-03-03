@@ -5,6 +5,10 @@ dependencies:
     - grunt build
     - sudo pip install awscli
     
+general:
+  artifacts:
+    - "dist"
+    
 deployment:
   aws:
     branch: develop
