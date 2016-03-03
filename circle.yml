@@ -3,3 +3,10 @@ dependencies:
     - bower install
     - npm install
     - grunt build
+    - sudo pip install awscli
+    
+deployment:
+  aws:
+    branch: develop
+    commands:
+      - /bin/bash publish.sh
