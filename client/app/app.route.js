@@ -11,6 +11,6 @@
       enabled: true,
       requireBase: false,
       rewriteLinks: false
-    });
+    }).hashPrefix('!');
   }
 })();
