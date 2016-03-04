@@ -1,0 +1,49 @@
+/* ===== == = === 48em (768px) === = == ===== */
+
+@media only screen and (max-width : 48em) {
+
+  nav.menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
+}
+/* ===== == = === 312.500em (5000px) and 48.063em (769px) === = == ===== */
+
+@media only screen and (max-width : 312.500em) and (min-width: 48.063em) {
+
+  nav.menu {
+    display: block;
+    position: fixed;
+    bottom: 3em;
+    left: 0;
+
+    height: 3em;
+    width: 100%;
+
+    background: @nav-bg-color;
+    z-index: 99998 !important;
+
+    background: rgba(0, 0, 0, 0.8);
+    border: solid 1px #777;
+    border-left: 0;
+    border-right: 0;
+
+    h3 {
+      float: left;
+      position: relative;
+      top: 50%;
+      .vertical-center;
+      margin-left: 2em;
+    }
+
+    ul {
+      float: right;
+      list-style-type: none;
+      height: 100%;
+      margin-right: 2em;
+    }
+  }
+}
+
