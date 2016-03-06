@@ -8,11 +8,11 @@
 
   function routeConfig($routeProvider) {
     $routeProvider
-      .when('/pictures', {
+      .when('/', {
         templateUrl: 'app/pictures/pictures.html',
         controller: 'Pictures',
         controllerAs: 'vm'
-      }).otherwise('/pictures');
+      }).otherwise('/');
   }
 })();
 
