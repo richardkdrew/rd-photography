@@ -35,7 +35,7 @@ describe('config block', function () {
     });
 
     it('should have a pictures route with right template, controller and controllerAs block', function () {
-      var picturesRoute = route.routes['/pictures'];
+      var picturesRoute = route.routes['/'];
       expect(picturesRoute).toBeDefined();
       expect(picturesRoute.controller).toEqual('Pictures');
       expect(picturesRoute.controllerAs).toEqual('vm');
