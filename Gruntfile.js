@@ -367,11 +367,17 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>',
           src: [
             'package.json',
-            'server/**/*',
-            'Dockerfile',
-            'newrelic.js'
+            'server/**/*'
           ]
-        }]
+        }/*, {
+          expand: true,
+          dot: true,
+          cwd: '<%= yeoman.client %>/app/pictures',
+          dest: '<%= yeoman.dist %>/public/data',
+          src: [
+            '*.json'
+          ]
+        }*/]
       },
       styles: {
         expand: true,
@@ -478,7 +484,7 @@ module.exports = function (grunt) {
         files: {
           '.tmp/app/app.css' : '<%= yeoman.client %>/app/app.less'
         }
-      },
+      }
     },
 
     injector: {

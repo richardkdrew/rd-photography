@@ -20,8 +20,7 @@
       picturesDataService.getPictures(0, 50).then(getPicturesComplete, getPicturesFailed);
 
       function getPicturesComplete(data) {
-        var pictures = mapPictures(data);
-        deferred.resolve(pictures);
+        deferred.resolve(data);
       }
 
       function getPicturesFailed(data, code) {
@@ -30,41 +29,6 @@
       }
 
       return deferred.promise;
-    }
-
-    function mapPictures(pictures) {
-      var mappedPictures = [];
-
-      pictures.forEach(function (element) {
-
-        var picture = {
-          id: element.id,
-          title: element.title,
-          small: {
-            url: element.url_m,
-            width: Number(element.width_m),
-            height: Number(element.height_m)
-          },
-          medium: {
-            url: element.url_c,
-            width: Number(element.width_c),
-            height: Number(element.height_c)
-          },
-          large: {
-            url: element.url_o,
-            width: Number(element.width_o),
-            height: Number(element.height_o)
-          },
-          tags: element.tags.split(" ")
-        };
-        mappedPictures.push(picture);
-      });
-      // Sort by id
-      pictures.sort(function (a, b) {
-        return a.id - b.id;
-      });
-
-      return mappedPictures;
     }
   }
 })();

@@ -23,7 +23,7 @@
     }
 
     function loadMore() {
-      return picturesService.getPictures(0, 50).then(function (data) {
+      return picturesService.getPictures().then(function (data) {
         vm.pictures = data;
         vm.hasSome = data.length > 0;
         return vm.pictures;
