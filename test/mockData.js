@@ -1,18 +1,7 @@
 var mockData = (function() {
   return {
-    getMockApiResponse: getMockApiResponse,
     getMockPictures: getMockPictures
   };
-
-  function getMockApiResponse() {
-    return {
-      meta: {
-        paging: {limit: 3, offset: 0, total: 52},
-        result: {status: 'ok'}
-      },
-      pictures: getMockPictures()
-    }
-  }
 
   function getMockPictures() {
     return [{

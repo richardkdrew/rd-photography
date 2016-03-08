@@ -30,7 +30,7 @@ describe('controller: pictures', function () {
 
       sinon.stub(mockPicturesService, 'getPictures', function () {
         var deferred = $q.defer();
-        deferred.resolve([]);
+        deferred.resolve(mockData.getMockPictures());
         return deferred.promise;
       });
 
@@ -55,6 +55,14 @@ describe('controller: pictures', function () {
 
     it('should have called the picturesService:getPictures method', function () {
       expect(mockPicturesService.getPictures.called).toBeTruthy();
+    });
+
+    it('should be marked as having some pictures', function () {
+      expect(controller.hasSome).toEqual(true);
+    });
+
+    it('should have 3 pictures loaded', function () {
+      expect(controller.pictures.length).toEqual(3);
     });
 
     it('should be ready', function () {
