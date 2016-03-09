@@ -9,18 +9,38 @@
 
   function picturesService($q, picturesDataService) {
 
+    var self = this;
+    self.limit = 0;
+    self.currentOffset = 0;
+    self.pictures = [];
+
     var service = {
-      getPictures : getPictures
+      getPictures : getPictures,
+      hasMore     : hasMore
     };
     return service;
 
     function getPictures() {
       var deferred = $q.defer();
 
-      picturesDataService.getPictures(0, 50).then(getPicturesComplete, getPicturesFailed);
+      if(self.pictures.length === 0) {
+        picturesDataService.getPictures().then(getPicturesComplete, getPicturesFailed);
+      }
+      else {
+        getPicturesComplete(self.pictures);
+      }
 
       function getPicturesComplete(data) {
-        deferred.resolve(data);
+        self.pictures = data;
+        var start = self.currentOffset;
+        //console.log('start:' + start);
+        var length = self.currentOffset + getLimit();
+        //console.log('length:' + length);
+        var pictures = data.slice(start, length);
+        self.currentOffset = start + pictures.length;
+        //console.log('new offset:' + self.currentOffset);
+        //console.log('number of pictures found:' + pictures.length);
+        deferred.resolve(pictures);
       }
 
       function getPicturesFailed(data, code) {
@@ -29,6 +49,25 @@
       }
 
       return deferred.promise;
+    }
+
+    function hasMore() {
+      return (self.limit + self.currentOffset) < self.pictures.length;
+    }
+
+    function getLimit() {
+      var perPage = 52;
+      if (/Mobi/.test(navigator.userAgent)) {
+        perPage = 24;
+      }
+      //console.log('paging limit: ', perPage);
+      return perPage;
+    }
+
+    function getOffset() {
+      var offset = (self.currentOffset + getLimit());
+      //console.log('paging offset: ', offset);
+      return offset;
     }
   }
 })();

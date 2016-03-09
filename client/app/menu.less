@@ -25,8 +25,8 @@
     background: @nav-bg-color;
     z-index: 99998 !important;
 
-    background: rgba(0, 0, 0, 0.8);
-    border: solid 1px #777;
+    background: @menu-bg-color;
+    border: solid 1px @menu-border-color;
     border-left: 0;
     border-right: 0;
 
@@ -36,8 +36,15 @@
       top: 50%;
       .vertical-center;
       margin-left: 2em;
-    }
 
+      //font-family: Garamond, "Bookman", Georgia, Palatino, "Times New Roman", serif;
+      //font-size: 50px;
+    }
+    /*
+    h3:first-letter {
+      font-size: 75px;
+    }
+    */
     ul {
       float: right;
       list-style-type: none;

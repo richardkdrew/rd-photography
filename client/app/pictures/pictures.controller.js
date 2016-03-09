@@ -13,6 +13,8 @@
     vm.loadMore = loadMore;
     vm.pictures = [];
     vm.hasSome = false;
+    vm.hasMore = false;
+    vm.loadingMore = false;
 
     activate();
 
@@ -24,9 +26,14 @@
     }
 
     function loadMore() {
+      if (vm.loadingMore) {return;}
+      vm.loadingMore = true;
+
       return picturesService.getPictures().then(function (data) {
         vm.pictures = vm.pictures.concat(data);
         vm.hasSome = vm.pictures.length > 0;
+        vm.hasMore = picturesService.hasMore();
+        vm.loadingMore = false;
         return vm.pictures;
       });
     }

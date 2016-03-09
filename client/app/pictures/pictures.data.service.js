@@ -23,10 +23,11 @@
         .error(getPicturesFailed);
 
       function getPicturesComplete(data) {
-        var start = offset;
-        var length = Number(offset) + Number(limit);
-        var pictures = (!data ? [] : data.slice(start, length));
-        deferred.resolve(pictures);
+        //var start = offset;
+        //var length = Number(offset) + Number(limit);
+        //var pictures = (!data ? [] : data.slice(start, length));
+        console.log('data:' + data);
+        deferred.resolve(data);
       }
 
       function getPicturesFailed(error, data) {
