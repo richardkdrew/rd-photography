@@ -33,13 +33,15 @@
       function getPicturesComplete(data) {
         self.pictures = data;
         var start = self.currentOffset;
-        //console.log('start:' + start);
         var length = self.currentOffset + getLimit();
-        //console.log('length:' + length);
         var pictures = data.slice(start, length);
         self.currentOffset = start + pictures.length;
-        //console.log('new offset:' + self.currentOffset);
-        //console.log('number of pictures found:' + pictures.length);
+
+        console.log('start:' + start);
+        console.log('length:' + length);
+        console.log('new offset:' + self.currentOffset);
+        console.log('number of pictures found:' + pictures.length);
+
         deferred.resolve(pictures);
       }
 
@@ -62,12 +64,6 @@
       }
       //console.log('paging limit: ', perPage);
       return perPage;
-    }
-
-    function getOffset() {
-      var offset = (self.currentOffset + getLimit());
-      //console.log('paging offset: ', offset);
-      return offset;
     }
   }
 })();
