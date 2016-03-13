@@ -17,9 +17,9 @@
       'ngRoute',
       'ngSanitize',
       /*
-       * Reusable cross-app components
+       * 3rd Party modules
        */
-      'app.widgets',
+      'angularGrid',
       /*
        * Feature areas
        */

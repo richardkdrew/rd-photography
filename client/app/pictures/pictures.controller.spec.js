@@ -24,7 +24,7 @@ describe('controller: pictures', function () {
       mockPicturesService = {
         getPictures: function () {
         },
-        hasSome: function () {
+        hasMore: function () {
         }
       };
 
@@ -80,9 +80,8 @@ describe('controller: pictures', function () {
         // Call the loadMore function
         scope.$apply(function () {
           controller.loadMore();
-        })
-        ;
-        
+        });
+
         expect(controller.pictures.length).toEqual(6);
       });
 

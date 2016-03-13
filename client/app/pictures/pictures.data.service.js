@@ -15,7 +15,7 @@
 
     return service;
 
-    function getPictures(offset, limit) {
+    function getPictures() {
       var deferred = $q.defer();
 
       $http.get('app/pictures/pictures.json')
@@ -23,10 +23,6 @@
         .error(getPicturesFailed);
 
       function getPicturesComplete(data) {
-        //var start = offset;
-        //var length = Number(offset) + Number(limit);
-        //var pictures = (!data ? [] : data.slice(start, length));
-        console.log('data:' + data);
         deferred.resolve(data);
       }
 
