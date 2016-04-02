@@ -41,21 +41,20 @@ article, aside, details, figcaption, figure, footer, header, menu, nav, section 
 html, body {
   width: 100%;
   max-width: 100%;
-  height: 100%;
-
-  background-color: @main-bg-color;
+  min-height: 100%;
 }
 
 body {
   color: @main-font-color;
   font-family: Arial, Helvetica, Geneva, sans-serif;
+
+  background: @main-bg-color;
 }
 
 section.page-container {
   position: relative;
   height: 100%;
   width: 100%;
-  background-color: @main-bg-color;
   z-index: 99997 !important;
 }
 

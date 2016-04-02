@@ -34,7 +34,6 @@
 .photoGrid.angular-grid{
   overflow-y: visible;
   display: block;
-  padding: 5px;
 }
 
 .gridItem {
@@ -42,8 +41,6 @@
   list-style: none;
   box-sizing: border-box;
   -moz-box-sizing : border-box;
-  -webkit-transition: all 0.6s ease-out;
-  transition: all 0.6s ease-out;
   overflow: hidden;
   background: @main-highlight-background-color url(@loading-picture-image) no-repeat center center;
 }
@@ -51,8 +48,6 @@
 .gridItem img {
   width: 100%;
   vertical-align: middle;
-  -webkit-transition: opacity 0.6s ease-out;
-  transition: opacity 0.6s ease-out;
   opacity: 0;
   visibility: hidden;
 }
@@ -60,4 +55,22 @@
 .gridItem img.img-loaded {
   visibility: visible;
   opacity: 1;
+}
+
+/* ===== == = === 48.000em (768px) === = == ===== */
+@media only screen and (min-width: 48.000em) {
+
+  .load-more a:hover {
+    background-color: @nav-bg-highlight-color
+  }
+
+  .gridItem {
+    -webkit-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+  }
+
+  .gridItem img {
+    -webkit-transition: opacity 0.5s ease-out;
+    transition: opacity 0.5s ease-out;
+  }
 }
