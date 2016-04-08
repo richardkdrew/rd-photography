@@ -1,5 +1,4 @@
 #!/bin/sh
 npm install -g bower grunt-cli
-npm install
+npm install --silent
 bower install --allow-root
-grunt --version
