@@ -5,7 +5,8 @@ inputs:
     path: .
   - name: node_modules
     path: ./node_modules
+outputs:
+  - name: node_modules
   - name: bower_components
-    path: ./client/bower_components
 run:
-  path: ./ci/unit.sh
+  path: ./ci/bowerinstall.sh
