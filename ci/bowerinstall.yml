@@ -2,6 +2,8 @@ platform: linux
 image: "docker:///node#4.2.3"
 inputs:
   - name: photography
-  - name: node_modules
+    path: ./photography_after_npm
+outputs:
+  - name: photography_after_npm_and_bower
 run:
-  path: ./ci/bowerinstall.sh
+  path: photography/ci/bowerinstall.sh
