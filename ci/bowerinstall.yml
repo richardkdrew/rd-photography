@@ -2,9 +2,8 @@ platform: linux
 image: "docker:///node#4.2.3"
 inputs:
   - name: photography
-    path: .
+  - name: node_modules
 outputs:
   - name: bower_components
-    path: ./client/bower_components
 run:
   path: ./ci/bowerinstall.sh

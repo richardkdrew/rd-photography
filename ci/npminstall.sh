@@ -1,5 +1,4 @@
 #!/bin/bash
 npm set progress=false
-cd photography
-npm install --silent
-ls node_modules/*
+npm install ./photography --silent
+cp -r ./photography/node_modules ./node_modules
