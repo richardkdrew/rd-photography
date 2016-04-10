@@ -3,7 +3,5 @@ image: "docker:///node#4.2.3"
 inputs:
   - name: photography
     path: .
-outputs:
-  - name: node_modules
 run:
   path: ./ci/npminstall.sh

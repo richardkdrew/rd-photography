@@ -1,12 +1,7 @@
 platform: linux
 image: "docker:///node#4.2.3"
 inputs:
-  - name: photography
+  - name: npminstall
     path: .
-  - name: node_modules
-    path: ./node_modules
-outputs:
-  - name: node_modules
-  - name: bower_components
 run:
   path: ./ci/bowerinstall.sh
