@@ -1,9 +1,8 @@
 platform: linux
 image: "docker:///node#4.2.3"
 inputs:
-  - name: photography
-  - name: node_modules
+  - name: photography2
 outputs:
-  - name: bower_components
+  - name: photography3
 run:
   path: ./ci/bowerinstall.sh
