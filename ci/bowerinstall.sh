@@ -4,4 +4,4 @@ npm install -g bower
 cd photography
 bower install --allow-root --silent
 cd ..
-cp -r ./photography/client/bower_components ./bower_components
+cp -r ./photography/client/bower_components/* ./bower_components
