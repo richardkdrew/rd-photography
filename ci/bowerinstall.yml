@@ -1,8 +1,8 @@
 platform: linux
 image: "docker:///node#4.2.3"
 inputs:
-  - name: photography
-    path: ./photography_after_npm
+  - name: photography_after_npm
+    path: ./photography
 outputs:
   - name: photography_after_npm_and_bower
 run:
