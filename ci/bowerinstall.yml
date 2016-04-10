@@ -1,8 +1,8 @@
 platform: linux
 image: "docker:///node#4.2.3"
 inputs:
-  - name: photography2
+  - name: photography
 outputs:
-  - name: photography3
+  - name: photography
 run:
   path: ./ci/bowerinstall.sh
