@@ -1,7 +1,8 @@
 platform: linux
 image: "docker:///node#4.2.3"
 inputs:
+  - name: photography
+outputs:
   - name: photography_after_dependency_install
-    path: ./photography
 run:
-  path: photography/ci/unit.sh
+  path: photography/ci/install.sh
