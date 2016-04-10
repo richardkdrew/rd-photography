@@ -2,9 +2,8 @@ platform: linux
 image: "docker:///node#4.2.3"
 inputs:
   - name: photography
-    path: .
 outputs:
   - name: node_modules
-    path: ./node_modules
+    path: photography/node_modules
 run:
-  path: ./ci/npminstall.sh
+  path: photography/ci/npminstall.sh
