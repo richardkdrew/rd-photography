@@ -1,9 +1,0 @@
-platform: linux
-image: "docker:///node#4.2.3"
-inputs:
-  - name: photography_after_npm
-    path: ./photography
-outputs:
-  - name: photography_after_npm_and_bower
-run:
-  path: photography/ci/bowerinstall.sh
