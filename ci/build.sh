@@ -6,5 +6,5 @@ cd photography
 grunt build
 
 cd ..
-cp -r photography/dist/public* build_artifacts
-rm -rf build_artifacts/bower_components
+VERSION=cat version/number
+tar -zcvf build_artifacts/photography-{$VERSION}.tar.gz --exclude='bower_components' photography/dist/public/*

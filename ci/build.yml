@@ -3,6 +3,7 @@ image: "docker:///node#5.4.1"
 inputs:
   - name: photography_after_dependency_install
     path: photography
+  - name: version
 outputs:
   - name: build_artifacts
 run:
