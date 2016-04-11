@@ -3,7 +3,5 @@ image: "docker:///node#4.2.3"
 inputs:
   - name: photography_after_dependency_install
     path: photography
-outputs:
-  - name: photography_after_dependency_install
 run:
   path: photography/ci/unit.sh
