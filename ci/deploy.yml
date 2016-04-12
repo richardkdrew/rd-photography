@@ -1,0 +1,10 @@
+platform: linux
+image: "docker:///node#5.4.1"
+inputs:
+  - name: photography
+  - name: version
+  - name: candidate-release
+outputs:
+  - name: deployable_artifacts
+run:
+  path: photography/ci/deploy.sh
