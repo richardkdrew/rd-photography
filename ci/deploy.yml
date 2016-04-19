@@ -1,5 +1,5 @@
 platform: linux
-image: "docker:///node#5.4.1"
+image: "docker:///python#2.7.11-slim"
 inputs:
   - name: photography
   - name: version

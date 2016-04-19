@@ -1,5 +1,5 @@
 #!/bin/bash
 
-ls candidate-release
-ls photography
-ls version
+pip install awscli
+
+aws --version
