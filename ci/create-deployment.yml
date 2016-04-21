@@ -7,4 +7,4 @@ inputs:
 outputs:
   - name: deployable_artifacts
 run:
-  path: photography/ci/deploy.sh
+  path: photography/ci/create-deployment.sh
