@@ -1,5 +1,6 @@
 #!/bin/bash
-npm set progress=false
+
+set -e -x
 
 cd photography
 grunt test:unit
