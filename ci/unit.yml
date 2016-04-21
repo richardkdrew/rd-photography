@@ -1,5 +1,5 @@
 platform: linux
-image: "docker:///node#5.4.1"
+image: "docker:///richardkdrew/docker-node-grunt-bower"
 inputs:
   - name: photography_after_dependency_install
     path: photography

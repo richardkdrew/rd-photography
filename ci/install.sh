@@ -3,8 +3,6 @@ npm set progress=false
 
 cd photography
 npm install --silent
-
-npm install -g bower --silent
 bower install --allow-root --silent
 cd ..
 
