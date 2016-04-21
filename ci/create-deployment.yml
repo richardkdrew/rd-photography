@@ -1,5 +1,5 @@
 platform: linux
-image: "docker:///alpine"
+image: "docker:///richardkdrew/docker-node-grunt-bower"
 inputs:
   - name: photography
   - name: version
