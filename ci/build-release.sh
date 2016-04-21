@@ -2,6 +2,13 @@
 
 set -e -x
 
+echo "v$(cat version/number)" > release/name
+echo "v$(cat version/number)" > release/tag
+
+cat > release/body <<EOF
+A candidate release that has yet to be vetted by our full pipeline.
+EOF
+
 npm set progress=false
 
 cd photography
