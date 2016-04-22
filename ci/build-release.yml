@@ -7,4 +7,4 @@ inputs:
 outputs:
   - name: build_artifacts
 run:
-  path: photography/ci/build.sh
+  path: photography/ci/build-release.sh
