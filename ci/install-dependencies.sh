@@ -2,9 +2,8 @@
 
 set -e -x
 
-npm set progress=false
-
 # running npm install
+npm set progress=false
 cd photography
 npm install --silent
 
