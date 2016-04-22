@@ -2,12 +2,12 @@
 
 set -e -x
 
+# setting local version label
+VERSION=$(cat version/number)
+
 # running build
 cd photography
 grunt build
-
-# setting local version label
-echo "v$(cat ../version/number)" > VERSION
 
 # creating build artifacts archive
 cd dist/public
