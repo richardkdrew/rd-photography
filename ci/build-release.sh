@@ -12,4 +12,4 @@ EOF
 
 # making release artifacts available as an output
 mkdir release/artifacts
-cp build_artifacts/* release/artifacts
+cp -r build_artifacts/* release/artifacts
