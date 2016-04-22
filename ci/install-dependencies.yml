@@ -6,7 +6,6 @@ image_resource:
 
 inputs:
   - name: photography
-  - name: version
 
 outputs:
   - name: photography_after_dependency_install

@@ -1,7 +1,12 @@
 platform: linux
-image: "docker:///richardkdrew/docker-node-grunt-bower"
+
+image_resource:
+  type: docker-image
+  source: {repository: richardkdrew/docker-node-grunt-bower, tag: "latest"}
+
 inputs:
   - name: photography_after_dependency_install
     path: photography
+
 run:
   path: photography/ci/unit.sh

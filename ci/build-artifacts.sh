@@ -2,7 +2,7 @@
 
 set -e -x
 
-# running Grunt build
+# running build
 cd photography
 grunt build
 
