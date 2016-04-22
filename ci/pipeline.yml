@@ -49,7 +49,7 @@ jobs:
   - put: version
     params: {file: version/number}
 
-- name: ui-rc
+- name: build-rc
   public: true
   serial: true
   serial_groups: [version]
@@ -100,6 +100,6 @@ groups:
   jobs:
   - unit
   - rc
-  - ui-rc
+  - build-rc
   - major
   - minor

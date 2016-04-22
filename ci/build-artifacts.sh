@@ -12,5 +12,6 @@ grunt build
 # creating build artifacts archive and making build artifacts available as an output
 #cd dist/public
 #tar -cvzf ../../../build_artifacts/photography-$VERSION.tar.gz --exclude='bower_components' * -v
+cd ..
 cp photography/dist/public/* build_artifacts
 rm -rf build_artifacts/bower_components
