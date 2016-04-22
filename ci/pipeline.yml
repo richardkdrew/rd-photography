@@ -49,7 +49,7 @@ jobs:
   - put: version
     params: {file: version/number}
 
-- name: build-rc
+- name: ui-rc
   public: true
   serial: true
   serial_groups: [version]
@@ -60,14 +60,14 @@ jobs:
       trigger: true
     - get: version
       params: {pre: rc}
+      passed: [rc]
+      trigger: true
   - task: install-dependencies
     file: photography/ci/install-dependencies.yml
   - task: build-artifacts
     file: photography/ci/build-artifacts.yml
   - task: build-release
     file: photography/ci/build-release.yml
-  - put: version
-    params: {file: version/number}
   - put: photography-rc
     params:
     name: release/name
@@ -100,5 +100,6 @@ groups:
   jobs:
   - unit
   - rc
+  - ui-rc
   - major
   - minor
