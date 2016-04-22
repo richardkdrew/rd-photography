@@ -19,15 +19,9 @@ resources:
 - name: photography-releases
   type: github-release
   source:
+    user: richardkdrew
     repository: photography
     access_token: {{github-private-key}}
-
-- name: photography-master
-  type: git
-  source:
-    uri: {{git-uri-photography}}
-    branch: master
-    private_key: {{github-private-key}}
 
 jobs:
 - name: unit
@@ -46,14 +40,17 @@ jobs:
   serial: true
   serial_groups: [version]
   plan:
-  - get: photography
-    passed: [unit]
-    trigger: true
-  - get: version
-    params: {pre: rc}
+  - aggregate:
+    - get: photography
+      passed: [unit]
+      trigger: true
+    - get: version
+      params: {pre: rc}
   - task: install-dependencies
     file: photography/ci/install-dependencies.yml
-  - task: build
+  - task: build-artifacts
+    file: photography/ci/build-artifacts.yml
+  - task: build-release
     file: photography/ci/build-release.yml
   - put: version
     params: {file: version/number}
@@ -62,7 +59,7 @@ jobs:
     name: release/name
     tag: release/tag
     body: release/body
-    globs: [build_artifacts/photography-*.tar.gz]
+    globs: [release/artifacts/*]
 
 - name: minor
   public: true
