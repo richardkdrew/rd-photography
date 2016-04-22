@@ -3,15 +3,12 @@
 set -e -x
 
 # setting local version label
-VERSION=$(cat version/number)
+VERSION="v$(cat version/number)"
 
 # running build
 cd photography
 grunt build
 
-# creating build artifacts archive
+# creating build artifacts archive and making build artifacts available as an output
 cd dist/public
-tar -cvzf photography-$VERSION.tar.gz --exclude='bower_components' . -v
-
-# making build artifacts available as an output
-cp photography-$VERSION.tar.gz ../../..build_artifacts
+tar -cvzf ../../../build_artifacts/photography-$VERSION.tar.gz --exclude='bower_components' * -v
