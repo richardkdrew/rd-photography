@@ -5,12 +5,11 @@ image_resource:
   source: {repository: richardkdrew/docker-node-grunt-bower, tag: "latest"}
 
 inputs:
-  - name: photography_after_dependency_install
-    path: photography
+  - name: photography
   - name: version
 
 outputs:
-  - name: release
+  - name: photography_after_dependency_install
 
 run:
-  path: photography/ci/build-release.sh
+  path: photography/ci/install-dependencies.sh

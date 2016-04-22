@@ -37,7 +37,7 @@ jobs:
   - get: photography
     trigger: true
   - task: install-dependencies
-    file: photography/ci/install.yml
+    file: photography/ci/install-dependencies.yml
   - task: unit-test
     file: photography/ci/unit.yml
 
@@ -52,7 +52,7 @@ jobs:
   - get: version
     params: {pre: rc}
   - task: install-dependencies
-    file: photography/ci/install.yml
+    file: photography/ci/install-dependencies.yml
   - task: build
     file: photography/ci/build-release.yml
   - put: version

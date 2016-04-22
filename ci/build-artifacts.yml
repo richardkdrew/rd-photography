@@ -10,7 +10,7 @@ inputs:
   - name: version
 
 outputs:
-  - name: release
+  - name: build_artifacts
 
 run:
-  path: photography/ci/build-release.sh
+  path: photography/ci/build-artifacts.sh

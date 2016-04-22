@@ -1,8 +1,0 @@
-platform: linux
-image: "docker:///richardkdrew/docker-node-grunt-bower"
-inputs:
-  - name: photography
-outputs:
-  - name: photography_after_dependency_install
-run:
-  path: photography/ci/install.sh
