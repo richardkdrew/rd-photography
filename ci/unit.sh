@@ -6,4 +6,4 @@ set -e -x
 cd photography
 grunt test:unit
 
-cp -r ../photography_after_dependency_install ../output_test
+cp -r . ../output_test
