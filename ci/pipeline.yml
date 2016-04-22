@@ -16,7 +16,7 @@ resources:
     branch: develop
     private_key: {{github-private-key}}
 
-- name: photography-releases
+- name: photography-rc
   type: github-release
   source:
     user: richardkdrew
@@ -46,6 +46,20 @@ jobs:
       trigger: true
     - get: version
       params: {pre: rc}
+  - put: version
+    params: {file: version/number}
+
+- name: build-rc
+  public: true
+  serial: true
+  serial_groups: [version]
+  plan:
+  - aggregate:
+    - get: photography
+      passed: [rc]
+      trigger: true
+    - get: version
+      params: {pre: rc}
   - task: install-dependencies
     file: photography/ci/install-dependencies.yml
   - task: build-artifacts
@@ -54,7 +68,7 @@ jobs:
     file: photography/ci/build-release.yml
   - put: version
     params: {file: version/number}
-  - put: photography-releases
+  - put: photography-rc
     params:
     name: release/name
     tag: release/tag
