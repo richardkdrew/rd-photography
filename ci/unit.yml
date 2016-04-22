@@ -7,7 +7,9 @@ image_resource:
 inputs:
   - name: photography_after_dependency_install
     path: photography
-output:
+
+outputs:
   - name: output_test
+
 run:
   path: photography/ci/unit.sh
