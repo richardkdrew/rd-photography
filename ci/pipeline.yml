@@ -23,6 +23,19 @@ resources:
     repository: rd-photography
     access_token: {{photography-release-access-token}}
 
+
+- name: aws-deployment
+  type: s3-sync
+  source:
+    bucket: rd-photography
+    access_key_id: {{photography-s3-access-key-id}}
+    secret_access_key: {{photography-s3-secret-access-key}}
+    options: [ 
+      "--exclude: *", 
+      "--include: deployment/*", 
+      "--cache-control max-age=604800"
+    ]
+
 jobs:
 - name: unit
   public: true
@@ -120,5 +133,6 @@ groups:
   - unit
   - rc
   - build-rc
+  - deploy
   - major
   - minor
