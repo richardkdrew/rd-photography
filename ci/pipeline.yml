@@ -72,7 +72,6 @@ jobs:
       passed: [rc]
       trigger: true
     - get: version
-      params: {pre: rc}
       passed: [rc]
       trigger: true
   - task: install-dependencies

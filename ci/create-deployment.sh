@@ -3,4 +3,4 @@
 cd deployment
 
 VERSION=$(cat ../version/number)
-tar -xvzf ../candidate-release/photography-$VERSION.tgz
+tar -xvzf ../photography-rc/photography-$VERSION.tgz
