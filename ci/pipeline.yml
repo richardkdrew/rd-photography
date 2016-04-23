@@ -1,3 +1,9 @@
+resource_types:
+- name: s3-sync
+  type: docker-image
+  source:
+    repository: 18fgsa/s3-resource-simple
+    
 resources:
 - name: version
   type: semver
@@ -30,10 +36,11 @@ resources:
     bucket: rd-photography
     access_key_id: {{photography-s3-access-key-id}}
     secret_access_key: {{photography-s3-secret-access-key}}
-    options: [ 
-      "--exclude: *", 
-      "--include: deployment/*", 
-      "--cache-control max-age=604800"
+    options: [
+      '--dryrun',
+      '--exclude "*"',
+      '--include "deployment/*"',
+      '--cache-control max-age=604800'
     ]
 
 jobs:
