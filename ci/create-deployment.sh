@@ -1,6 +1,8 @@
 #!/bin/bash
 
-cd deployment
+# setting local version label
+VERSION="v$(cat version/number)"
 
-VERSION=$(cat ../version/number)
+# preparing deployment files
+cd deployment
 tar -xvzf ../photography-rc/photography-$VERSION.tgz
