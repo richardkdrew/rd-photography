@@ -38,8 +38,9 @@ resources:
     secret_access_key: {{photography-s3-secret-access-key}}
     options: [
       '--dryrun',
-      '--exclude "*"',
-      '--include "deployment/*"',
+      '--exclude "photography"',
+      '--exclude "photography-rc"',
+      '--exclude "version"',
       '--cache-control max-age=604800'
     ]
 
