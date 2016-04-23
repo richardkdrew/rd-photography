@@ -1,10 +1,14 @@
 platform: linux
-image: "docker:///richardkdrew/docker-node-grunt-bower"
+
+image: docker:///ubuntu
+
 inputs:
   - name: photography
   - name: version
-  - name: candidate-release
+  - name: photography-rc
+  
 outputs:
-  - name: deployable_artifacts
+  - name: deployment
+  
 run:
   path: photography/ci/create-deployment.sh

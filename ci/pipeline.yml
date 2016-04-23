@@ -20,7 +20,7 @@ resources:
   type: github-release
   source:
     user: richardkdrew
-    repository: photography
+    repository: rd-photography
     access_token: {{photography-release-access-token}}
 
 jobs:
@@ -74,6 +74,25 @@ jobs:
       tag: release/tag
       body: release/body
       globs: [release/artifacts/*]
+
+- name: deploy
+  public: true
+  serial: true
+  serial_groups: [version]
+  plan:
+  - aggregate:
+    - get: photography-rc
+      passed: [build-rc]
+      trigger: true
+    - get: photography
+      passed: [build-rc]
+      trigger: true
+    - get: version
+      passed: [build-rc]
+      trigger: true
+  - task: create-deployment
+    file: photography/ci/create-deployment.yml
+  - put: aws-deployment
 
 - name: minor
   public: true
