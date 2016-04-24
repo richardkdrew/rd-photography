@@ -4,4 +4,4 @@
 VERSION="v$(cat version/number)"
 
 # preparing deployment files
-tar -xvzf ../candidate-release/photography-$VERSION.tgz
+tar -xvzf candidate-release/photography-$VERSION.tgz
