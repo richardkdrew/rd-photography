@@ -22,13 +22,21 @@ resources:
     branch: develop
     private_key: {{github-private-key}}
 
-- name: photography-rc
+- name: final-release
   type: github-release
   source:
     user: richardkdrew
     repository: rd-photography
     access_token: {{photography-release-access-token}}
 
+- name: candidate-release
+  type: s3
+  source:
+    region_name: ap-northeast-1
+    bucket: photography-pipeline-artifacts
+    regexp: photography-(.*).tgz
+    access_key_id: {{photography-s3-access-key-id}}
+    secret_access_key: {{photography-s3-secret-access-key}}
 
 - name: aws-deployment
   type: s3-sync
@@ -38,9 +46,6 @@ resources:
     secret_access_key: {{photography-s3-secret-access-key}}
     options: [
       '--dryrun',
-      '--exclude "photography"',
-      '--exclude "photography-rc"',
-      '--exclude "version"',
       '--cache-control max-age=604800'
     ]
 
@@ -87,13 +92,13 @@ jobs:
   - task: build-artifacts
     file: photography/ci/build-artifacts.yml
   - task: build-release
-    file: photography/ci/build-release.yml
-  - put: photography-rc
+    file: photography/ci/build-rc-release.yml
+  - put: candidate-release
     params:
-      name: release/name
-      tag: release/tag
-      body: release/body
-      globs: [release/artifacts/*]
+      name: rc-release/name
+      tag: rc-release/tag
+      body: rc-release/body
+      globs: [rc-release/artifacts/*]
 
 - name: deploy
   public: true
@@ -112,6 +117,16 @@ jobs:
       trigger: true
   - task: create-deployment
     file: photography/ci/create-deployment.yml
+  - task: format-deployment
+    config:
+      platform: linux
+      image: docker://busybox
+      inputs:
+      - name: deployment
+      run:
+        path: cd
+        args: [deployment]
+        path: echo
   - put: aws-deployment
 
 - name: minor

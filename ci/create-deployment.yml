@@ -5,7 +5,7 @@ image: docker:///ubuntu
 inputs:
   - name: photography
   - name: version
-  - name: photography-rc
+  - name: candidate-release
   
 outputs:
   - name: deployment
