@@ -22,6 +22,13 @@ resources:
     branch: develop
     private_key: {{github-private-key}}
 
+- name: photography-master
+  type: git
+  source:
+    uri: {{git-uri-photography}}
+    branch: master
+    private_key: {{github-private-key}}
+
 - name: final-release
   type: github-release
   source:
@@ -34,7 +41,7 @@ resources:
   source:
     region_name: ap-northeast-1
     bucket: photography-pipeline-artifacts
-    regexp: photography-(.*).tgz
+    regexp: photography-(.v*).tgz
     access_key_id: {{photography-s3-access-key-id}}
     secret_access_key: {{photography-s3-secret-access-key}}
 
@@ -46,6 +53,8 @@ resources:
     secret_access_key: {{photography-s3-secret-access-key}}
     options: [
       '--dryrun',
+      '--exclude "*"',
+      '--include "deployment/*"',
       '--cache-control max-age=604800'
     ]
 
@@ -91,14 +100,8 @@ jobs:
     file: photography/ci/install-dependencies.yml
   - task: build-artifacts
     file: photography/ci/build-artifacts.yml
-  - task: build-release
-    file: photography/ci/build-rc-release.yml
   - put: candidate-release
-    params:
-      name: rc-release/name
-      tag: rc-release/tag
-      body: rc-release/body
-      globs: [rc-release/artifacts/*]
+    params: {file: build_artifacts/photography-*.tgz}
 
 - name: deploy
   public: true
@@ -106,7 +109,7 @@ jobs:
   serial_groups: [version]
   plan:
   - aggregate:
-    - get: photography-rc
+    - get: candidate-release
       passed: [build-rc]
       trigger: true
     - get: photography
@@ -117,17 +120,27 @@ jobs:
       trigger: true
   - task: create-deployment
     file: photography/ci/create-deployment.yml
-  - task: format-deployment
-    config:
-      platform: linux
-      image: docker://busybox
-      inputs:
-      - name: deployment
-      run:
-        path: cd
-        args: [deployment]
-        path: echo
   - put: aws-deployment
+  
+- name: shipit
+  public: true
+  serial: true
+  serial_groups: [version]
+  plan:
+  - aggregate:
+    - get: photography
+      passed: [deploy]
+    - get: candidate-release
+      passed: [deploy]
+    - get: version
+      params: {bump: final}
+      passed: [deploy]
+  - put: final-release
+    params:
+      name: release/name
+      tag: release/tag
+      body: release/body
+      globs: [release/artifacts/*]
 
 - name: minor
   public: true
@@ -148,6 +161,15 @@ jobs:
     params: {bump: major, pre: rc}
   - put: version
     params: {file: version/number}
+    
+- name: patch
+  serial_groups: [version]
+  plan:
+  - get: version
+    passed: [shipit]
+    trigger: true
+  - put: version
+    params: {bump: patch, pre: rc}
 
 groups:
 - name: photography
@@ -156,5 +178,7 @@ groups:
   - rc
   - build-rc
   - deploy
+  - shipit
+  - patch
   - major
   - minor
