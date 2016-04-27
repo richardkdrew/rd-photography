@@ -119,7 +119,7 @@ jobs:
       passed: [build-rc]
       trigger: true
     - task: perform-testflight
-        file: photography/ci/perform-testflight.yml
+      file: photography/ci/perform-testflight.yml
 
 - name: deploy
   public: true
