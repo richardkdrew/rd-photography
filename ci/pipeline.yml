@@ -128,13 +128,13 @@ jobs:
   plan:
   - aggregate:
     - get: candidate-release
-      passed: [build-rc]
+      passed: [testflight]
       trigger: true
     - get: photography
-      passed: [build-rc]
+      passed: [testflight]
       trigger: true
     - get: version
-      passed: [build-rc]
+      passed: [testflight]
       trigger: true
   - task: create-deployment
     file: photography/ci/create-deployment.yml
@@ -195,6 +195,7 @@ groups:
   - unit
   - rc
   - build-rc
+  - testflight
   - deploy
   - shipit
   - patch
