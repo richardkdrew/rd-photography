@@ -3,7 +3,7 @@ resource_types:
   type: docker-image
   source:
     repository: 18fgsa/s3-resource-simple
-    
+
 resources:
 - name: version
   type: semver
@@ -103,6 +103,24 @@ jobs:
   - put: candidate-release
     params: {file: build_artifacts/photography-*.tgz}
 
+- name: testflight
+  public: true
+  serial: true
+  serial_groups: [version]
+  plan:
+  - aggregate:
+    - get: candidate-release
+      passed: [build-rc]
+      trigger: true
+    - get: photography
+      passed: [build-rc]
+      trigger: true
+    - get: version
+      passed: [build-rc]
+      trigger: true
+    - task: perform-testflight
+        file: photography/ci/perform-testflight.yml
+
 - name: deploy
   public: true
   serial: true
@@ -121,7 +139,7 @@ jobs:
   - task: create-deployment
     file: photography/ci/create-deployment.yml
   - put: aws-deployment
-  
+
 - name: shipit
   public: true
   serial: true
@@ -161,7 +179,7 @@ jobs:
     params: {bump: major, pre: rc}
   - put: version
     params: {file: version/number}
-    
+
 - name: patch
   serial_groups: [version]
   plan:
