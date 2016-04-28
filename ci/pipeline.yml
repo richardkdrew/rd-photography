@@ -153,6 +153,12 @@ jobs:
     - get: version
       params: {bump: final}
       passed: [deploy]
+  - task: promote-to-master
+    file: photography/ci/promote-to-master.yml
+  - put: photography-master
+    params: {repository: photography}
+  - task: create-release
+    file: photography/ci/create-release.yml
   - put: final-release
     params:
       name: release/name

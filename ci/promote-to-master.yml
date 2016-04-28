@@ -1,0 +1,11 @@
+platform: linux
+
+image: docker:///ubuntu
+
+inputs:
+  - name: photography
+  - name: version
+  - name: candidate-release
+  
+run:
+  path: photography/ci/promote-to-master.sh

@@ -1,0 +1,14 @@
+platform: linux
+
+image: docker:///ubuntu
+
+inputs:
+  - name: photography
+  - name: version
+  - name: candidate-release
+  
+outputs:
+  - name: release
+  
+run:
+  path: photography/ci/create-release.sh
