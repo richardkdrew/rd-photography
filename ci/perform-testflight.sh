@@ -2,6 +2,9 @@
 
 set -e -x
 
+# setting local version label
+VERSION="v$(cat version/number)"
+
 # set up the app
 mkdir app
 cd app
