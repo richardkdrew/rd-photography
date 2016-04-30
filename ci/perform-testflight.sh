@@ -6,12 +6,10 @@ set -e -x
 VERSION="v$(cat version/number)"
 
 # set up the app
-mkdir app
-cd app
-tar -xvzf ../candidate-release/photography-$VERSION.tgz
+tar -xvzf -C app ../candidate-release/photography-$VERSION.tgz
 
 # copy the app files into place
-cp . /usr/share/nginx/html
+cp app/* /usr/share/nginx/html
 
 # placeholder for testing app
 RESULT="$(curl -Is http://127.0.0.1 | head -n 1)"
