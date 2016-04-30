@@ -6,6 +6,7 @@ set -e -x
 VERSION="v$(cat version/number)"
 
 # set up the app
+mkdir app
 tar -xvzf -C app ../candidate-release/photography-$VERSION.tgz
 
 # copy the app files into place
