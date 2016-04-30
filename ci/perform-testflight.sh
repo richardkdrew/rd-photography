@@ -7,7 +7,7 @@ VERSION="v$(cat version/number)"
 
 # set up the app
 mkdir app
-tar -xvzf -C app ../candidate-release/photography-$VERSION.tgz
+tar -xvzf candidate-release/photography-$VERSION.tgz -C app
 
 # copy the app files into place
 cp app/* /usr/share/nginx/html
