@@ -2,6 +2,11 @@
 
 set -e -x
 
+# temporary curl install (Dockerize later)
+apt-get update
+apt-get install -y curl --no-install-recommends
+apt-get clean
+
 # setting local version label
 VERSION="v$(cat version/number)"
 
