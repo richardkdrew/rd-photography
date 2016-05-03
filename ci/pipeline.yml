@@ -29,6 +29,13 @@ resources:
     branch: master
     private_key: {{github-private-key}}
 
+- name: deployments
+  type: git
+  source:
+    uri: {{bitbucket-uri-photography}}
+    branch: master
+    private_key: {{bitbucket-private-key}}
+
 - name: final-release
   type: github-release
   source:
@@ -109,6 +116,8 @@ jobs:
   serial_groups: [version]
   plan:
   - aggregate:
+    - get: deployments
+      trigger: true
     - get: candidate-release
       passed: [build-rc]
       trigger: true

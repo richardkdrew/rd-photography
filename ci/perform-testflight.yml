@@ -1,11 +1,14 @@
 platform: linux
 
-image: docker:///nginx
+image_resource:
+  type: docker-image
+  source: {repository: richardkdrew/docker-node-grunt-bower, tag: "latest"}
 
 inputs:
   - name: photography
   - name: version
   - name: candidate-release
+  - name: deployments
 
 run:
   path: photography/ci/perform-testflight.sh

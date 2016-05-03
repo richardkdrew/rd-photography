@@ -1,0 +1,21 @@
+/**
+ * This file uses the Page Object pattern to define the main page for tests
+ * https://docs.google.com/presentation/d/1B6manhG0zEXkC-H-tPo2vwU06JhL8w9-XCF9oehXzAQ
+ */
+
+'use strict';
+
+var PicturesPage = function() {
+  this.picturesArea = element(by.css('.pictures-area'));
+  this.pictureContainer = this.picturesArea.element(by.css('.pictures-container'));
+  this.gridWrap = this.pictureContainer.element(by.css('.gridWrap'));
+  this.photoGrid = this.gridWrap.element(by.css('.photoGrid'));
+
+  this.noPicturesContainer = this.picturesArea.element(by.css('.no-pictures-container'));
+  this.noPicturesMessage = this.noPicturesContainer.element(by.css('.message'));
+
+  this.loadingScreen = element(by.css('.loading-screen .feature'));
+};
+
+module.exports = new PicturesPage();
+

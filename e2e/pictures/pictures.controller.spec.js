@@ -8,7 +8,7 @@ describe("Pictures Controller", function() {
   });
 
   it('should automatically redirect to / when location is pictures', function() {
-    browser.get('/pictures');
+    browser.get('/#/pictures');
     expect(browser.getLocationAbsUrl()).toMatch("/");
   });
 
