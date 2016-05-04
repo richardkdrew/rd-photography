@@ -2,7 +2,7 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source: {repository: richardkdrew/docker-node-java, tag: "latest"}
+  source: {repository: richardkdrew/node-java, tag: "latest"}
 
 inputs:
   - name: photography
