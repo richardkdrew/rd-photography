@@ -13,4 +13,4 @@ outputs:
 - name: photography-merged
 
 run:
-  path: photography/ci/merge-master
+  path: photography/ci/merge-master.sh

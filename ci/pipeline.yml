@@ -184,7 +184,7 @@ jobs:
     - get: photography
       params: {submodules: none}
   - task: merge-to-develop
-    file: photography/ci/master-merge.yml
+    file: photography/ci/merge-master.yml
   - put: photography
     params: {repository: photography-merged}
 
