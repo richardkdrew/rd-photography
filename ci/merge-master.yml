@@ -1,0 +1,16 @@
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: concourse/git-resource
+
+inputs:
+- name: photography-master
+- name: photography
+
+outputs:
+- name: photography-merged
+
+run:
+  path: photography/ci/merge-master

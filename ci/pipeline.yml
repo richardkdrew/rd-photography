@@ -163,7 +163,7 @@ jobs:
       params: {bump: final}
       passed: [deploy]
   - task: promote-to-master
-    file: photography/ci/promote-to-master.yml
+    file: photography/ci/merge-master.yml
   - put: photography-master
     params: {repository: photography}
   - task: create-release
@@ -174,6 +174,19 @@ jobs:
       tag: release/tag
       body: release/body
       globs: [release/artifacts/*]
+
+- name: master-merge
+  plan:
+  - aggregate:
+    - get: photography-master
+      params: {submodules: none}
+      trigger: true
+    - get: photography
+      params: {submodules: none}
+  - task: merge-to-develop
+    file: photography/ci/master-merge.yml
+  - put: photography
+    params: {repository: photography-merged}
 
 - name: minor
   public: true
@@ -207,6 +220,7 @@ jobs:
 groups:
 - name: photography
   jobs:
+  - master-merge
   - unit
   - rc
   - build-rc
