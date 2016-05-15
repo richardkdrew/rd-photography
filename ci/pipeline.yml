@@ -165,7 +165,7 @@ jobs:
   - task: promote-to-master
     file: photography/ci/merge-master.yml
   - put: photography-master
-    params: {repository: photography}
+    params: {repository: photography-merged}
   - task: create-release
     file: photography/ci/create-release.yml
   - put: final-release
@@ -185,8 +185,26 @@ jobs:
       params: {submodules: none}
   - task: merge-to-develop
     file: photography/ci/merge-master.yml
-  - put: photography
+  - put: photography-master
     params: {repository: photography-merged}
+
+- name: create-pre-release
+  plan:
+  - aggregate:
+    - get: photography-master
+      params: {submodules: none}
+      trigger: true
+    - get: photography
+      params: {submodules: none}
+  - task: create-pre-release
+    file: photography/ci/create-pre-release.yml
+  - put: final-release
+    params:
+      name: release/name
+      tag: release/tag
+      body: release/body
+      globs: [release/artifacts/*]
+      prerelease: true
 
 - name: minor
   public: true
