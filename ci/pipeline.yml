@@ -191,11 +191,15 @@ jobs:
 - name: create-pre-release
   plan:
   - aggregate:
-    - get: photography-master
-      params: {submodules: none}
+    - get: candidate-release
+      passed: [build-rc]
       trigger: true
     - get: photography
-      params: {submodules: none}
+      passed: [build-rc]
+      trigger: true
+    - get: version
+      passed: [build-rc]
+      trigger: true
   - task: create-pre-release
     file: photography/ci/create-pre-release.yml
   - put: final-release
@@ -238,6 +242,7 @@ jobs:
 groups:
 - name: photography
   jobs:
+  - create-pre-release
   - master-merge
   - unit
   - rc
