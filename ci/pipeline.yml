@@ -202,12 +202,33 @@ jobs:
       trigger: true
   - task: create-pre-release
     file: photography/ci/create-pre-release.yml
+  - task: generate-commitish
+    config:
+      platform: linux
+
+      image_resource:
+        type: docker-image
+        source: {repository: concourse/git-resource}
+
+      inputs:
+      - name: photography
+
+      outputs:
+      - name: generated-commitish
+
+      run:
+        path: sh
+        args:
+        - -c
+        - |
+          git -C photography rev-parse HEAD > generated-commitish/commitish
   - put: final-release
     params:
-      name: release/name
-      tag: release/tag
-      body: release/body
-      globs: [release/artifacts/*]
+      name: pre-release/name
+      tag: pre-release/tag
+      body: pre-release/body
+      globs: [pre-release/artifacts/*]
+      commitish: generated-commitish/commitish
       prerelease: true
 
 - name: minor

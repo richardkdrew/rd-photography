@@ -18,7 +18,4 @@ EOF
 # making release artifacts available as an output
 mkdir pre-release/artifacts
 
-cd pre-release/artifacts
-
-# preparing deployment files
-tar -xvzf $CANDIDATE_RELEASE/photography-$VERSION.tgz
+cp $CANDIDATE_RELEASE/photography-$VERSION.tgz pre-release/artifacts/photography-$VERSION.tgz
